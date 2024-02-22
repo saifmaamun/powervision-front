@@ -6,33 +6,51 @@ import ProductCard from "../../components/ui/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addToCloneState } from "../../redux/features/cloneProduct/cloneSlice";
 import { FilterMenu } from "../../components/ui/FilterMenu";
+import { addToFilteredProducts } from "../../redux/features/filteredProduct/filterSlice";
+import { useEffect } from "react";
 // import { addToFilteredProducts } from "../../redux/features/filteredProduct/filterSlice";
 
 const Products = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery("");
   const dispatch = useAppDispatch();
-  const { gender, status } = useAppSelector((state) => state.filter);
+  const { gender, status, filteredProducts } = useAppSelector(
+    (state) => state.filter
+  );
 
   const { cloneProducts } = useAppSelector((state) => state.clone);
 
   // creating a copy of the products coming from backend
   if (!isError && !isLoading) {
     dispatch(addToCloneState(products.data));
+    // console.log(products.data);
   }
 
-  // filtering products
-  const handleFilter = (status: boolean) => {
-    if (status) {
-      const results = cloneProducts?.filter(
-        (product: IProduct) =>
-          product.gender.toLocaleLowerCase() === gender.toLowerCase()
-      );
-      return results;
-    }
-  };
-  handleFilter(status);
+  // trying useEffect
+  // trying useEffect
+  // trying useEffect
 
-  const filteredProducts = handleFilter(status);
+  useEffect(() => {
+    // filtering products
+    const handleFilter = (status: boolean) => {
+      if (status) {
+        const results = cloneProducts?.filter(
+          (product: IProduct) =>
+            product.gender.toLocaleLowerCase() === gender.toLowerCase()
+        );
+        return results;
+      }
+    };
+    handleFilter(status);
+
+    const sortedProducts = handleFilter(status);
+    // console.log(filteredProducts);
+    if (sortedProducts) {
+      dispatch(addToFilteredProducts(sortedProducts));
+    }
+  }, [dispatch, cloneProducts, status, gender]);
+  // trying useEffect
+  // trying useEffect
+  // trying useEffect
 
   if (isLoading) {
     return (

@@ -11,7 +11,6 @@ type TInitalState = {
   price: number;
   lenseColor: string;
   frameColor: string;
-
   filteredProducts: IProduct[];
 };
 
@@ -39,7 +38,7 @@ const filterSlice = createSlice({
       state.status = false;
     },
     addToFilteredProducts: (state, action) => {
-      state.filteredProducts = [...action.payload];
+      state.filteredProducts = action.payload;
     },
     filterGender: (state, action) => {
       state.gender = action.payload;
