@@ -3,10 +3,37 @@ import { Skeleton } from "../../components/ui/Skeleton";
 import { Typography } from "@material-tailwind/react";
 import { IProduct } from "../../types/productTypes";
 import ProductCard from "../../components/ui/ProductCard";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addToCloneState } from "../../redux/features/cloneProduct/cloneSlice";
+import { FilterMenu } from "../../components/ui/FilterMenu";
+// import { addToFilteredProducts } from "../../redux/features/filteredProduct/filterSlice";
 
 const Products = () => {
-  const { data: products, isLoading, isError } = useGetAllProductsQuery({});
-  //   console.log(products, isLoading, isError, isSuccess);
+  const { data: products, isLoading, isError } = useGetAllProductsQuery("");
+  const dispatch = useAppDispatch();
+  const { gender, status } = useAppSelector((state) => state.filter);
+
+  const { cloneProducts } = useAppSelector((state) => state.clone);
+
+  // creating a copy of the products coming from backend
+  if (!isError && !isLoading) {
+    dispatch(addToCloneState(products.data));
+  }
+
+  // filtering products
+  const handleFilter = (status: boolean) => {
+    if (status) {
+      const results = cloneProducts?.filter(
+        (product: IProduct) =>
+          product.gender.toLocaleLowerCase() === gender.toLowerCase()
+      );
+      return results;
+    }
+  };
+  handleFilter(status);
+
+  const filteredProducts = handleFilter(status);
+
   if (isLoading) {
     return (
       <div className="flex justify-center my-12">
@@ -23,12 +50,25 @@ const Products = () => {
       </div>
     );
   }
+
   return (
-    <div className="container my-12 mx-auto grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-4">
-      {products?.data.map((product: IProduct) => (
-        <ProductCard product={product} key={product.id} />
-      ))}
-    </div>
+    <>
+      <FilterMenu />
+
+      {status ? (
+        <div className="container my-12 mx-auto grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-4">
+          {filteredProducts?.map((product: IProduct) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      ) : (
+        <div className="container my-12 mx-auto grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-4">
+          {products?.data.map((product: IProduct) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

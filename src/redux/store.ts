@@ -5,6 +5,8 @@ import modalReducer from "./features/modal/modalSlice";
 import variableReducer from "./features/variable/variableSlice";
 import userReducer from "./features/users/usersSlice";
 import sellReducer from "./features/sell/sellSlice";
+import cloneReducer from "./features/cloneProduct/cloneSlice";
+import filterReducer from "./features/filteredProduct/filterSlice";
 // ...
 
 export const store = configureStore({
@@ -15,6 +17,8 @@ export const store = configureStore({
     variable: variableReducer,
     user: userReducer,
     sell: sellReducer,
+    clone: cloneReducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(baseApi.middleware),

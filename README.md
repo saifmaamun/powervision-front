@@ -39,7 +39,9 @@ Website Deployed
 
 - Netlify
 
-# npm install
+## npm install
+
+## npm run dev
 
 ## Functionalities
 

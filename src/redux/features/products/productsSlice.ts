@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IProduct } from "../../../types/productTypes";
 
-type TInitialState = {
+export type TInitialState = {
   id?: string;
   ownerEmail?: string;
   buyerName?: string;
