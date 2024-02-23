@@ -1,11 +1,11 @@
 # Power Vision
 
-Live Link: https://lucky-creponne-0fc0ba.netlify.app/
+Live Link: https://redux-watch-shop-live.vercel.app/
 
-Server Link: https://power-vision-bwknx44a3-saifmaamun.vercel.app
+Server Link: https://redux-watch-shop.vercel.app/
 
-Front End Git Link: https://github.com/Porgramming-Hero-web-course/l2b2-full-stack-a5-client-side-saifmaamun
-back End Git Link: https://github.com/Porgramming-Hero-web-course/l2b2-full-stack-a5-server-side-saifmaamun
+Front End Git Link: https://github.com/saifmaamun/redux-frontend
+back End Git Link: https://github.com/saifmaamun/redux-backend
 
 Used Technologies:
 
@@ -37,7 +37,7 @@ Server Deployed
 
 Website Deployed
 
-- Netlify
+- Vercel
 
 ## npm install
 
