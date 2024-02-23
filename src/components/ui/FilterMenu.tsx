@@ -8,10 +8,11 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addToFilterableProducts,
-  filterByGender,
-  filterByMaterial,
+  setGenderFilter,
   filterOff,
   filterSwitch,
+  setMaterialFilter,
+  setBrandFilter,
 } from "../../redux/features/filteredProduct/filterSlice";
 
 export function FilterMenu() {
@@ -27,19 +28,19 @@ export function FilterMenu() {
   const handleGenderChange = async (e: { target: { value: unknown } }) => {
     dispatch(filterSwitch());
     dispatch(addToFilterableProducts(filterableData));
-    dispatch(filterByGender(e?.target?.value));
+    dispatch(setGenderFilter(e?.target?.value));
   };
   // set material
   const handleMetarialChange = (e: { target: { value: unknown } }) => {
     dispatch(filterSwitch());
     dispatch(addToFilterableProducts(filterableData));
-    dispatch(filterByMaterial(e?.target?.value));
+    dispatch(setMaterialFilter(e?.target?.value));
   };
   // set Brand
   const handleBrandChange = (e: { target: { value: unknown } }) => {
     dispatch(filterSwitch());
     dispatch(addToFilterableProducts(filterableData));
-    dispatch(filterByMaterial(e?.target?.value));
+    dispatch(setBrandFilter(e?.target?.value));
   };
 
   React.useEffect(() => {
@@ -58,9 +59,10 @@ export function FilterMenu() {
         Select Gender :
         <li className="w-fit  ">
           <select className=" " onChange={handleGenderChange}>
-            {cloneProducts.map((product) => (
-              <option value={product.gender}>{product.gender}</option>
-            ))}
+            <option value="men">Men</option>
+            <option value="women">Women</option>
+            <option value="unisex">Unisex</option>
+            <option value="children">Children</option>
           </select>
         </li>
       </ul>
@@ -68,11 +70,9 @@ export function FilterMenu() {
         Select Material :
         <li className="w-fit  ">
           <select className=" " onChange={handleMetarialChange}>
-            {cloneProducts.map((product) => (
-              <option value={product.frameMaterial}>
-                {product.frameMaterial}
-              </option>
-            ))}
+            <option value="metal">Metal</option>
+            <option value="acetate">Acetate</option>
+            <option value="plastic">Plastic</option>
           </select>
         </li>
       </ul>
@@ -80,9 +80,10 @@ export function FilterMenu() {
         Select Brand :
         <li className="w-fit  ">
           <select className=" " onChange={handleBrandChange}>
-            {cloneProducts.map((product) => (
-              <option value={product.brand}>{product.brand}</option>
-            ))}
+            <option value="oliver peoples">Oliver Peoples</option>
+            <option value="warby parker">Warby Parker</option>
+            <option value="ray-ban">Ray-Ban</option>
+            <option value="prada">Prada</option>
           </select>
         </li>
       </ul>

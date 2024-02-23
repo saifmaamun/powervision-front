@@ -46,17 +46,21 @@ const filterSlice = createSlice({
     addToFilteredProducts: (state, action) => {
       state.filteredProducts = action.payload;
     },
-    filterByGender: (state, action) => {
+    setGenderFilter: (state, action) => {
       state.gender = action.payload;
     },
-    filterByMaterial: (state, action) => {
+    setMaterialFilter: (state, action) => {
       state.material = action.payload;
+    },
+    setBrandFilter: (state, action) => {
+      state.brand = action.payload;
     },
   },
 });
 export const {
-  filterByGender,
-  filterByMaterial,
+  setGenderFilter,
+  setMaterialFilter,
+  setBrandFilter,
   addToFilterableProducts,
   addToFilteredProducts,
   filterSwitch,

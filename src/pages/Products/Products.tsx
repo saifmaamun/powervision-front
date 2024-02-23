@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useGetAllProductsQuery } from "../../redux/features/products/productsApi";
 import { Skeleton } from "../../components/ui/Skeleton";
 import { Typography } from "@material-tailwind/react";
@@ -13,8 +14,14 @@ const Products = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery("");
 
   const dispatch = useAppDispatch();
-  const { gender, material, status, filterableProducts, filteredProducts } =
-    useAppSelector((state) => state.filter);
+  const {
+    gender,
+    material,
+    status,
+    brand,
+    filterableProducts,
+    filteredProducts,
+  } = useAppSelector((state) => state.filter);
 
   // creating a copy of the products coming from backend
   if (!isError && !isLoading) {
@@ -28,21 +35,12 @@ const Products = () => {
 
   const filterByGender = (status: boolean, gender: string) => {
     if (status && gender) {
-      if (!filteredProducts) {
-        const results = filterableProducts.filter(
-          (product: IProduct) =>
-            product.gender.toLocaleLowerCase() === gender.toLowerCase()
-        );
-        dispatch(addToFilteredProducts(results));
-        return results;
-      } else {
-        const results = filteredProducts.filter(
-          (product: IProduct) =>
-            product.gender.toLocaleLowerCase() === gender.toLowerCase()
-        );
-        dispatch(addToFilteredProducts(results));
-        return results;
-      }
+      const results = filterableProducts.filter(
+        (product: IProduct) =>
+          product.gender.toLocaleLowerCase() === gender.toLowerCase()
+      );
+      dispatch(addToFilteredProducts(results));
+      return results;
     }
   };
 
@@ -54,7 +52,8 @@ const Products = () => {
   );
   console.log(sortedProductsByGender);
   // filter by gender and save it in store
-
+  //
+  //
   // filter by Material and save it in store
   const filterByMaterial = (status: boolean, material: string) => {
     if (status && material) {
@@ -67,6 +66,7 @@ const Products = () => {
     }
   };
   // filtering products
+
   const sortedProductsByMaterial = useMemo(
     () => filterByMaterial(status, material),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,7 +74,32 @@ const Products = () => {
   );
   console.log(sortedProductsByMaterial);
   // filter by Material and save it in store
-
+  //
+  //
+  // filter by Brand and save it in store
+  const filterByBrand = (status: boolean, brand: string) => {
+    if (status && brand) {
+      const results = filterableProducts.filter(
+        (product: IProduct) =>
+          product.brand.toLocaleLowerCase() === brand.toLowerCase()
+        //   console.log(product.brand.toLocaleLowerCase()),
+        // console.log(brand.toLowerCase())
+      );
+      dispatch(addToFilteredProducts(results));
+      return results;
+    }
+  };
+  // filtering products
+  const sortedProductsByBrand = useMemo(
+    () => filterByBrand(status, brand),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [brand, status]
+  );
+  console.log(sortedProductsByBrand);
+  // filter by Brand and save it in store
+  //
+  //
+  // loading State
   if (isLoading) {
     return (
       <div className="flex justify-center my-12">
