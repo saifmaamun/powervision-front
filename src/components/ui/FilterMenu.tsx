@@ -1,23 +1,39 @@
 import React, { useState } from "react";
-import { Navbar, MobileNav, IconButton } from "@material-tailwind/react";
-import { useAppDispatch } from "../../redux/hooks";
 import {
-  filterGender,
+  Navbar,
+  MobileNav,
+  IconButton,
+  Button,
+} from "@material-tailwind/react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  addToFilterableProducts,
+  filterByGender,
+  filterByMaterial,
   filterOff,
   filterSwitch,
 } from "../../redux/features/filteredProduct/filterSlice";
 
 export function FilterMenu() {
-  const [openNav, setOpenNav] = useState(false);
-  //   const { gender, status } = useAppSelector((state) => state.filter);
+  // states
   const dispatch = useAppDispatch();
-  const handleChange = (e: { target: { value: unknown } }) => {
+  const { cloneProducts } = useAppSelector((state) => state.clone);
+  // trying filtering
+  const filterableData = [...cloneProducts];
+
+  const [openNav, setOpenNav] = useState(false);
+
+  // set gender
+  const handleGenderChange = async (e: { target: { value: unknown } }) => {
     dispatch(filterSwitch());
-    if (e.target.value === "Clear") {
-      dispatch(filterOff());
-    } else {
-      dispatch(filterGender(e?.target?.value));
-    }
+    dispatch(addToFilterableProducts(filterableData));
+    dispatch(filterByGender(e?.target?.value));
+  };
+  // set material
+  const handleMetarialChange = (e: { target: { value: unknown } }) => {
+    dispatch(filterSwitch());
+    dispatch(addToFilterableProducts(filterableData));
+    dispatch(filterByMaterial(e?.target?.value));
   };
 
   React.useEffect(() => {
@@ -28,20 +44,32 @@ export function FilterMenu() {
   }, []);
 
   const navList = (
-    <>
+    <div className="grid grid-flow-col gap-2 space-x-4">
+      <Button placeholder="" onClick={() => dispatch(filterOff())}>
+        Clear All
+      </Button>
       <ul className="mt-2 mb-4  top-0 z-10  flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
         Select Gender :
         <li className="w-fit  ">
-          <select className=" " onChange={handleChange}>
+          <select className=" " onChange={handleGenderChange}>
             <option value="Men">Men</option>
             <option value="Women">Women</option>
             <option value="Children">Children</option>
             <option value="Unisex">Unisex</option>
-            <option value="Clear">All</option>
           </select>
         </li>
       </ul>
-    </>
+      <ul className="mt-2 mb-4  top-0 z-10  flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+        Select material :
+        <li className="w-fit  ">
+          <select className=" " onChange={handleMetarialChange}>
+            <option value="Metal">Metal</option>
+            <option value="Acetate">Acetate</option>
+            <option value="Plastic">Plastic</option>
+          </select>
+        </li>
+      </ul>
+    </div>
   );
 
   return (

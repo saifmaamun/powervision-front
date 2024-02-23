@@ -11,6 +11,8 @@ type TInitalState = {
   price: number;
   lenseColor: string;
   frameColor: string;
+
+  filterableProducts: IProduct[];
   filteredProducts: IProduct[];
 };
 
@@ -24,6 +26,7 @@ const initialState: TInitalState = {
   price: 99999,
   lenseColor: "",
   frameColor: "",
+  filterableProducts: [],
   filteredProducts: [],
 };
 
@@ -37,14 +40,26 @@ const filterSlice = createSlice({
     filterOff: (state) => {
       state.status = false;
     },
+    addToFilterableProducts: (state, action) => {
+      state.filterableProducts = action.payload;
+    },
     addToFilteredProducts: (state, action) => {
       state.filteredProducts = action.payload;
     },
-    filterGender: (state, action) => {
+    filterByGender: (state, action) => {
       state.gender = action.payload;
+    },
+    filterByMaterial: (state, action) => {
+      state.material = action.payload;
     },
   },
 });
-export const { filterGender, addToFilteredProducts, filterSwitch, filterOff } =
-  filterSlice.actions;
+export const {
+  filterByGender,
+  filterByMaterial,
+  addToFilterableProducts,
+  addToFilteredProducts,
+  filterSwitch,
+  filterOff,
+} = filterSlice.actions;
 export default filterSlice.reducer;

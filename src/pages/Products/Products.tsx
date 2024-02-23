@@ -6,51 +6,52 @@ import ProductCard from "../../components/ui/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addToCloneState } from "../../redux/features/cloneProduct/cloneSlice";
 import { FilterMenu } from "../../components/ui/FilterMenu";
-import { addToFilteredProducts } from "../../redux/features/filteredProduct/filterSlice";
-import { useEffect } from "react";
-// import { addToFilteredProducts } from "../../redux/features/filteredProduct/filterSlice";
 
 const Products = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery("");
   const dispatch = useAppDispatch();
-  const { gender, status, filteredProducts } = useAppSelector(
+  const { gender, status, filterableProducts } = useAppSelector(
     (state) => state.filter
   );
 
-  const { cloneProducts } = useAppSelector((state) => state.clone);
+  // const { cloneProducts } = useAppSelector((state) => state.clone);
 
   // creating a copy of the products coming from backend
   if (!isError && !isLoading) {
     dispatch(addToCloneState(products.data));
-    // console.log(products.data);
   }
 
-  // trying useEffect
-  // trying useEffect
-  // trying useEffect
+  // filtering products
 
-  useEffect(() => {
-    // filtering products
-    const handleFilter = (status: boolean) => {
-      if (status) {
-        const results = cloneProducts?.filter(
-          (product: IProduct) =>
-            product.gender.toLocaleLowerCase() === gender.toLowerCase()
-        );
-        return results;
-      }
-    };
-    handleFilter(status);
-
-    const sortedProducts = handleFilter(status);
-    // console.log(filteredProducts);
-    if (sortedProducts) {
-      dispatch(addToFilteredProducts(sortedProducts));
+  const filterByGender = (status: boolean, gender: string) => {
+    if (status && gender) {
+      const results = filterableProducts.filter(
+        (product: IProduct) =>
+          product.gender.toLocaleLowerCase() === gender.toLowerCase()
+      );
+      return results;
     }
-  }, [dispatch, cloneProducts, status, gender]);
-  // trying useEffect
-  // trying useEffect
-  // trying useEffect
+  };
+  const sortedProductsByGender = filterByGender(status, gender);
+  console.log(sortedProductsByGender);
+  const filteredProducts = sortedProductsByGender;
+  // if (sortedProductsByGender) {
+  //   const filteredProducts = sortedProductsByGender;
+  // }
+
+  // filter by material
+
+  // const filterByMaterial = (status: boolean, material: string) => {
+  //   if (status && material) {
+  //     const results = filterableProducts.filter(
+  //       (product: IProduct) =>
+  //         product.frameMaterial.toLocaleLowerCase() === material.toLowerCase()
+  //     );
+  //     return results;
+  //   }
+  // };
+  // const sortedProductsByMaterial = filterByMaterial(status, material);
+  // let filteredProducts = sortedProductsByMaterial;
 
   if (isLoading) {
     return (
