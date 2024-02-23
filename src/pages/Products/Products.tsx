@@ -6,52 +6,74 @@ import ProductCard from "../../components/ui/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addToCloneState } from "../../redux/features/cloneProduct/cloneSlice";
 import { FilterMenu } from "../../components/ui/FilterMenu";
+import { useMemo } from "react";
+import { addToFilteredProducts } from "../../redux/features/filteredProduct/filterSlice";
 
 const Products = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery("");
-  const dispatch = useAppDispatch();
-  const { gender, status, filterableProducts } = useAppSelector(
-    (state) => state.filter
-  );
 
-  // const { cloneProducts } = useAppSelector((state) => state.clone);
+  const dispatch = useAppDispatch();
+  const { gender, material, status, filterableProducts, filteredProducts } =
+    useAppSelector((state) => state.filter);
 
   // creating a copy of the products coming from backend
   if (!isError && !isLoading) {
     dispatch(addToCloneState(products.data));
   }
+  //
 
-  // filtering products
+  //
+
+  // filter by gender and save it in store
 
   const filterByGender = (status: boolean, gender: string) => {
     if (status && gender) {
+      if (!filteredProducts) {
+        const results = filterableProducts.filter(
+          (product: IProduct) =>
+            product.gender.toLocaleLowerCase() === gender.toLowerCase()
+        );
+        dispatch(addToFilteredProducts(results));
+        return results;
+      } else {
+        const results = filteredProducts.filter(
+          (product: IProduct) =>
+            product.gender.toLocaleLowerCase() === gender.toLowerCase()
+        );
+        dispatch(addToFilteredProducts(results));
+        return results;
+      }
+    }
+  };
+
+  // filtering products
+  const sortedProductsByGender = useMemo(
+    () => filterByGender(status, gender),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [gender, status]
+  );
+  console.log(sortedProductsByGender);
+  // filter by gender and save it in store
+
+  // filter by Material and save it in store
+  const filterByMaterial = (status: boolean, material: string) => {
+    if (status && material) {
       const results = filterableProducts.filter(
         (product: IProduct) =>
-          product.gender.toLocaleLowerCase() === gender.toLowerCase()
+          product.frameMaterial.toLocaleLowerCase() === material.toLowerCase()
       );
+      dispatch(addToFilteredProducts(results));
       return results;
     }
   };
-  const sortedProductsByGender = filterByGender(status, gender);
-  console.log(sortedProductsByGender);
-  const filteredProducts = sortedProductsByGender;
-  // if (sortedProductsByGender) {
-  //   const filteredProducts = sortedProductsByGender;
-  // }
-
-  // filter by material
-
-  // const filterByMaterial = (status: boolean, material: string) => {
-  //   if (status && material) {
-  //     const results = filterableProducts.filter(
-  //       (product: IProduct) =>
-  //         product.frameMaterial.toLocaleLowerCase() === material.toLowerCase()
-  //     );
-  //     return results;
-  //   }
-  // };
-  // const sortedProductsByMaterial = filterByMaterial(status, material);
-  // let filteredProducts = sortedProductsByMaterial;
+  // filtering products
+  const sortedProductsByMaterial = useMemo(
+    () => filterByMaterial(status, material),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [material, status]
+  );
+  console.log(sortedProductsByMaterial);
+  // filter by Material and save it in store
 
   if (isLoading) {
     return (

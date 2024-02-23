@@ -52,3 +52,11 @@ Website Deployed
 - Can sell products from details page.
 - Real time update on every change
 - Custom maintain every state changed by user.
+
+* Updated filtering functions
+
+* Updated updating products
+
+* Updated Bulk Product Delete
+
+* Interactive UX/UI

@@ -35,6 +35,12 @@ export function FilterMenu() {
     dispatch(addToFilterableProducts(filterableData));
     dispatch(filterByMaterial(e?.target?.value));
   };
+  // set Brand
+  const handleBrandChange = (e: { target: { value: unknown } }) => {
+    dispatch(filterSwitch());
+    dispatch(addToFilterableProducts(filterableData));
+    dispatch(filterByMaterial(e?.target?.value));
+  };
 
   React.useEffect(() => {
     window.addEventListener(
@@ -52,20 +58,31 @@ export function FilterMenu() {
         Select Gender :
         <li className="w-fit  ">
           <select className=" " onChange={handleGenderChange}>
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
-            <option value="Children">Children</option>
-            <option value="Unisex">Unisex</option>
+            {cloneProducts.map((product) => (
+              <option value={product.gender}>{product.gender}</option>
+            ))}
           </select>
         </li>
       </ul>
       <ul className="mt-2 mb-4  top-0 z-10  flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        Select material :
+        Select Material :
         <li className="w-fit  ">
           <select className=" " onChange={handleMetarialChange}>
-            <option value="Metal">Metal</option>
-            <option value="Acetate">Acetate</option>
-            <option value="Plastic">Plastic</option>
+            {cloneProducts.map((product) => (
+              <option value={product.frameMaterial}>
+                {product.frameMaterial}
+              </option>
+            ))}
+          </select>
+        </li>
+      </ul>
+      <ul className="mt-2 mb-4  top-0 z-10  flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+        Select Brand :
+        <li className="w-fit  ">
+          <select className=" " onChange={handleBrandChange}>
+            {cloneProducts.map((product) => (
+              <option value={product.brand}>{product.brand}</option>
+            ))}
           </select>
         </li>
       </ul>
