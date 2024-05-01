@@ -31,6 +31,7 @@ const Products = () => {
 
   //
 
+  // filtering products
   // filter by gender and save it in store
 
   const filterByGender = (status: boolean, gender: string) => {
@@ -40,11 +41,11 @@ const Products = () => {
           product.gender.toLocaleLowerCase() === gender.toLowerCase()
       );
       dispatch(addToFilteredProducts(results));
+      console.log(results);
       return results;
     }
   };
 
-  // filtering products
   const sortedProductsByGender = useMemo(
     () => filterByGender(status, gender),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,6 +53,7 @@ const Products = () => {
   );
   console.log(sortedProductsByGender);
   // filter by gender and save it in store
+
   //
   //
   // filter by Material and save it in store
@@ -62,10 +64,10 @@ const Products = () => {
           product.frameMaterial.toLocaleLowerCase() === material.toLowerCase()
       );
       dispatch(addToFilteredProducts(results));
+      console.log(results);
       return results;
     }
   };
-  // filtering products
 
   const sortedProductsByMaterial = useMemo(
     () => filterByMaterial(status, material),
@@ -76,27 +78,28 @@ const Products = () => {
   // filter by Material and save it in store
   //
   //
-  // filter by Brand and save it in store
+  // filter by Material and save it in store
   const filterByBrand = (status: boolean, brand: string) => {
     if (status && brand) {
       const results = filterableProducts.filter(
         (product: IProduct) =>
           product.brand.toLocaleLowerCase() === brand.toLowerCase()
-        //   console.log(product.brand.toLocaleLowerCase()),
-        // console.log(brand.toLowerCase())
       );
       dispatch(addToFilteredProducts(results));
+      console.log(results);
       return results;
     }
   };
-  // filtering products
+
   const sortedProductsByBrand = useMemo(
     () => filterByBrand(status, brand),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [brand, status]
   );
   console.log(sortedProductsByBrand);
-  // filter by Brand and save it in store
+  // filter by Material and save it in store
+  //
+
   //
   //
   // loading State
