@@ -128,6 +128,9 @@ const Details = () => {
                 <Typography variant="lead" color="blue-gray" placeholder={""}>
                   Price: ${product?.data?.price}
                 </Typography>
+                <Typography variant="lead" color="blue-gray" placeholder={""}>
+                  Owner: {product?.data?.ownerEmail}
+                </Typography>
               </CardBody>
               <CardFooter
                 placeholder={""}
@@ -135,7 +138,7 @@ const Details = () => {
               >
                 <SellModal />
                 {user.email == product.data.ownerEmail && (
-                  <Button placeholder={""} onClick={handleDelete}>
+                  <Button color="red" placeholder={""} onClick={handleDelete}>
                     Delete
                   </Button>
                 )}
