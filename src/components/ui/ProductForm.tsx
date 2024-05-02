@@ -1,5 +1,6 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import {
   addToStore,
@@ -20,6 +21,7 @@ import {
 import { handleOpen } from "../../redux/features/modal/modalSlice";
 import { AddProductModal } from "./AddProductModal";
 import { forAdd, forUpdate } from "../../redux/features/variable/variableSlice";
+import { IProduct } from "../../types/productTypes";
 
 export function ProductForm() {
   const { open } = useAppSelector((state) => state.modal);
@@ -37,6 +39,7 @@ export function ProductForm() {
     lens,
     lenseColor,
     descriptions,
+    price,
   } = useAppSelector((state) => state.product);
 
   const addNewProduct = async () => {
@@ -51,13 +54,58 @@ export function ProductForm() {
     dispatch(handleOpen());
   };
 
+  // form
+
+  const { register, handleSubmit } = useForm<IProduct>({
+    defaultValues: {
+      name: name,
+      brand: brand,
+      imageUrl: imageUrl,
+      frameMaterial: frameMaterial,
+      frameShape: frameShape,
+      lens: lens,
+      price: price,
+      gender: gender,
+      lenseColor: lenseColor,
+      frameColor: frameColor,
+      descriptions: descriptions,
+    },
+  });
+  const onSubmit: SubmitHandler<IProduct> = (data) => console.log(data);
+  // form
   return (
     <Card placeholder={""} color="transparent" shadow={false}>
       <Typography placeholder={""} variant="h4" color="blue-gray">
         Update Or Add New Product
       </Typography>
+      {/* form */}
 
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+      <form className="" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label>Name</label>
+          <br />
+          <input
+            className="border border-gray-900 w-full rounded black "
+            {...register("name")}
+            placeholder={name}
+            color="black"
+          />
+          <br />
+        </div>
+
+        {/* <input type="submit" /> */}
+        <Button placeholder="" className="w-full my-5">
+          <input type="submit" />
+        </Button>
+      </form>
+
+      {/* form */}
+    </Card>
+  );
+}
+
+/*
+<form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-2">
           <Typography
             placeholder={""}
@@ -275,25 +323,25 @@ export function ProductForm() {
               className: "before:content-none after:content-none",
             }}
           />
-          {/* <Typography
-            placeholder={""}
-            variant="h6"
-            color="blue-gray"
-            className="-mb-3"
-          >
-            Owner Email
-          </Typography>
-          <Input
-            value={user.email}
-            onBlur={() => dispatch(setOwnerEmail(user.email))}
-            placeholder={descriptions}
-            crossOrigin={""}
-            size="lg"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-          /> */}
+          //  <Typography
+          //   placeholder={""}
+          //   variant="h6"
+          //   color="blue-gray"
+          //   className="-mb-3"
+          // >
+          //   Owner Email
+          // </Typography>
+          // <Input
+          //   value={user.email}
+          //   onBlur={() => dispatch(setOwnerEmail(user.email))}
+          //   placeholder={descriptions}
+          //   crossOrigin={""}
+          //   size="lg"
+          //   className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+          //   labelProps={{
+          //     className: "before:content-none after:content-none",
+          //   }}
+          // /> 
         </div>
         <div className="flex justify-end space-x-4">
           <Button
@@ -316,6 +364,4 @@ export function ProductForm() {
           </Button>
         </div>
       </form>
-    </Card>
-  );
-}
+*/
