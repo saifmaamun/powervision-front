@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type TInitialState = {
-  variable: boolean;
+  variable: string;
 };
 const initialState: TInitialState = {
-  variable: true,
+  variable: "",
 };
 
 const variableSlice = createSlice({

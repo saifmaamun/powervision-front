@@ -57,7 +57,7 @@ const Details = () => {
     dispatch(setBridgeSize(product.data.bridgeSize));
     dispatch(setBuyerName(product.data.buyerName));
     dispatch(setDescriptions(product.data.descriptions));
-    dispatch(setFeameColor(product.data.frameColr));
+    dispatch(setFeameColor(product.data.frameColor));
     dispatch(setFrameMaterial(product.data.frameMaterial));
     dispatch(setFrameShape(product.data.frameShape));
     dispatch(setGender(product.data.gender));
@@ -145,7 +145,7 @@ const Details = () => {
               </CardFooter>
             </div>
           </div>
-          <div className="mx-auto w-fit">
+          <div className="ms-auto w-10/12">
             <ProductForm />
           </div>
         </div>
