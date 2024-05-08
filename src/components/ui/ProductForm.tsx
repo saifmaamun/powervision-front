@@ -82,10 +82,12 @@ export function ProductForm() {
   });
   const onSubmit: SubmitHandler<IProduct> = (data) => {
     if (variable === "update") {
+      // console.log(data);
       handleUpdateProductToDataBase(data);
       toast.success(`Product updated successfully`);
     } else if (variable === "add") {
       handleAddNewProductToDataBase(data);
+      // console.log(data);
       toast.success(`Product added successfully`);
     } else {
       console.log("somethings wrong");
@@ -100,7 +102,8 @@ export function ProductForm() {
       {/* form */}
 
       <form className="" onSubmit={handleSubmit(onSubmit)}>
-        <label>Name</label>
+        {/* input */}
+        <label className="text-black text-lg">Name</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -109,6 +112,154 @@ export function ProductForm() {
           color="black"
         />
         <br />
+        {/* input */}
+        {/* input */}
+        <label>Brand</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("brand")}
+          placeholder={brand}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Gender</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("gender")}
+          placeholder={gender}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Lens</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("lens")}
+          placeholder={lens}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Lens Color</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("lenseColor")}
+          placeholder={lenseColor}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Frame Material</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("frameMaterial")}
+          placeholder={frameMaterial}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Frame Color</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("frameColor")}
+          placeholder={frameColor}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Frame Shape</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("frameShape")}
+          placeholder={frameShape}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Bridge Size</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("bridgeSize")}
+          type="number"
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Border</label>
+        <br />
+        <select
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("border")}
+          color="black"
+        >
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Descriptions</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("descriptions")}
+          placeholder={descriptions}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Image Url</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("imageUrl")}
+          placeholder={imageUrl}
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Price</label>
+        <br />
+        <input
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("price")}
+          type="number"
+          color="black"
+        />
+        <br />
+        {/* input */}
+        {/* input */}
+        <label>Quantity</label>
+        <br />
+        <input
+          type="number"
+          className="border border-gray-900 w-full px-3 py-2 rounded black "
+          {...register("quantity")}
+          color="black"
+        />
+        <br />
+        {/* input */}
+
         <div className="flex justify-center align-middle space-x-2">
           <input
             className="border rounded-md border-gray-900 my-5 px-5 py-2 w-full  bg-black text-white  text-sm"
