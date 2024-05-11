@@ -114,7 +114,8 @@ const Details = () => {
                   Lense Color: {product?.data?.lenseColor}
                 </Typography>
                 <Typography variant="lead" color="blue-gray" placeholder={""}>
-                  Border: {product?.data?.border}
+                  Border:
+                  {product?.data?.border ? "Yes" : "No"}
                 </Typography>
                 <Typography variant="lead" color="blue-gray" placeholder={""}>
                   Bridge Size: {product?.data?.bridgeSize}mm

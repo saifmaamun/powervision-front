@@ -114,7 +114,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Brand</label>
+        <label className="text-black text-lg">Brand</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -125,7 +125,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Gender</label>
+        <label className="text-black text-lg">Gender</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -136,7 +136,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Lens</label>
+        <label className="text-black text-lg">Lens</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -147,7 +147,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Lens Color</label>
+        <label className="text-black text-lg">Lens Color</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -158,7 +158,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Frame Material</label>
+        <label className="text-black text-lg">Frame Material</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -169,7 +169,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Frame Color</label>
+        <label className="text-black text-lg">Frame Color</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -180,7 +180,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Frame Shape</label>
+        <label className="text-black text-lg">Frame Shape</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -191,7 +191,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Bridge Size</label>
+        <label className="text-black text-lg">Bridge Size</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -202,7 +202,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Border</label>
+        <label className="text-black text-lg">Border</label>
         <br />
         <select
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -216,7 +216,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Descriptions</label>
+        <label className="text-black text-lg">Descriptions</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -227,7 +227,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Image Url</label>
+        <label className="text-black text-lg">Image Url</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -238,7 +238,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Price</label>
+        <label className="text-black text-lg">Price</label>
         <br />
         <input
           className="border border-gray-900 w-full px-3 py-2 rounded black "
@@ -249,7 +249,7 @@ export function ProductForm() {
         <br />
         {/* input */}
         {/* input */}
-        <label>Quantity</label>
+        <label className="text-black text-lg">Quantity</label>
         <br />
         <input
           type="number"
