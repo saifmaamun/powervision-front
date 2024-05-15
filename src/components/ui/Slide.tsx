@@ -1,28 +1,7 @@
 import { Typography, Button } from "@material-tailwind/react";
 
 import { Link } from "react-router-dom";
-interface ProductCardProps {
-  product: {
-    _id?: string;
-    ownerEmail?: string;
-    buyerName?: string;
-    name: string;
-    brand: string;
-    imageUrl: string;
-    frameMaterial: string;
-    frameShape: string;
-    quantity: number;
-    saleDate?: string;
-    lens: string;
-    price: number;
-    gender: string;
-    lenseColor: string;
-    frameColor: string;
-    bridgeSize: number;
-    border: boolean;
-    descriptions: string;
-  };
-}
+import { ProductCardProps } from "../../types/productCardProps";
 
 const Slide: React.FC<ProductCardProps> = ({ product }) => {
   const id = product._id;
@@ -56,7 +35,6 @@ const Slide: React.FC<ProductCardProps> = ({ product }) => {
             className="mb-12 opacity-80"
           >
             {product.descriptions}
-            {id}
           </Typography>
           <div className="flex justify-center gap-2">
             <Button placeholder="" size="lg" color="white">

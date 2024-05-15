@@ -7,28 +7,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-interface ProductCardProps {
-  product: {
-    _id?: string;
-    ownerEmail?: string;
-    buyerName?: string;
-    name: string;
-    brand: string;
-    imageUrl: string;
-    frameMaterial: string;
-    frameShape: string;
-    quantity: number;
-    saleDate?: string;
-    lens: string;
-    price: number;
-    gender: string;
-    lenseColor: string;
-    frameColor: string;
-    bridgeSize: number;
-    border: boolean;
-    descriptions: string;
-  };
-}
+import { ProductCardProps } from "../../types/productCardProps";
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const id = product._id;
