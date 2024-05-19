@@ -1,6 +1,6 @@
 # Power Vision
 
-Live Link: https://redux-watch-shop-live.vercel.app/
+Live Link: https://power-vision-live.vercel.app/
 
 Server Link: https://redux-watch-shop.vercel.app/
 
@@ -45,6 +45,8 @@ Website Deployed
 ## npm run dev
 
 ## Functionalities
+
+- Fully build using Redux
 
 - Custom Login Signin
 - User can see all products as well as just one by clicking on them
